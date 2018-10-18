@@ -1,0 +1,9 @@
+{
+  "name": "exif-editor",
+  "repository": "https://github.com/fragment0/exif-editor.git",
+  "author": "fragment0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true
+}
