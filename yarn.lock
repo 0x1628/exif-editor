@@ -2897,10 +2897,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-piexifjs@^2.0.0-alpha.3:
-  version "2.0.0-alpha.3"
-  resolved "https://registry.npmjs.org/piexifjs/-/piexifjs-2.0.0-alpha.3.tgz#836997c6101e4cc9e602a67374f6d1414bb8e732"
-  integrity sha512-rm9fNhAfctP4wo5TwbvsIJo4q0KG2IErjsX57cw5nz8FOn0TRAjJT04WXQDSQ2qPGxJwD7MJcZwNysxT5Dg0ow==
+piexifjs@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/piexifjs/-/piexifjs-1.0.4.tgz#6f61e85511fd57eb75591cfb7290688e0abab3fd"
+  integrity sha512-va6FOuTVWC2bbiC4WiKus8scuAWoqgM4XwnmtttKe3YkwakyqTvsYMyctkTZv9Ra/uK7EdjTlyIA2U8rSDuwOw==
 
 pify@^2.0.0:
   version "2.3.0"

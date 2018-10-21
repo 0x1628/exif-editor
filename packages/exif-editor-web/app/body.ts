@@ -1,4 +1,4 @@
-import * as common from 'exif-editor-common'
+import * as common from '~/shared'
 import {html} from 'lit-html'
 
 console.log(common)
@@ -17,7 +17,7 @@ function handleImageSelect(e: Event) {
 }
 
 const body = html`<div class="init-input">
-  <div class=""></div>
+  <div class="">3</div>
   <input type="file" @change=${handleImageSelect} />
 </div>`
 

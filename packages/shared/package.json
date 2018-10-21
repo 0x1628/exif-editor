@@ -1,11 +1,12 @@
 {
-  "name": "exif-editor-common",
+  "name": "shared",
+  "private": true,
   "version": "1.0.0",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "@fragment0/tslint-config": "^0.1.2",
-    "piexifjs": "^2.0.0-alpha.3",
+    "piexifjs": "1.0.4",
     "tslint": "^5.11.0",
     "typescript": "^3.1.3"
   }

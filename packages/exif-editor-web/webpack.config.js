@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 const IS_DEV = process.env.NODE_ENV !== 'production'
 
 module.exports = {
@@ -19,13 +18,16 @@ module.exports = {
     rules: [
       {
         test: /.tsx?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '~': path.resolve(__dirname, '..'),
+    },
   },
   devtool: 'inline-source-map',
   plugins: [
