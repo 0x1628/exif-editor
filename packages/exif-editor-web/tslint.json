@@ -1,3 +1,7 @@
 {
-  "extends": "@fragment0/tslint-config"
+  "extends": "@fragment0/tslint-config",
+  "rules": {
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false
+  }
 }

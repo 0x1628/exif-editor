@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p ."
+  },
   "dependencies": {
     "@fragment0/tslint-config": "^0.1.2",
     "piexifjs": "1.0.4",

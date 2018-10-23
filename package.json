@@ -5,5 +5,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build:shared": "cd packages/shared && npm run build",
+    "web": "npm run build:shared && cd packages/exif-editor-web && npm run dev"
+  },
   "private": true
 }

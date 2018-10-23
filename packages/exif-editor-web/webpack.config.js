@@ -1,12 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const IS_DEV = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   mode: IS_DEV ? 'development' : 'production',
   entry: {
     app: [
-      './app/index.ts',
+      './app/index.tsx',
     ],
     sw: './sw/index.ts',
   },
@@ -20,6 +21,9 @@ module.exports = {
         test: /.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          projectReferences: true,
+        },
       },
     ],
   },

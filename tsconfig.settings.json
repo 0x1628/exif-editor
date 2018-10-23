@@ -6,6 +6,7 @@
         "module": "commonjs",
         "strict": true,
         "baseUrl": "./packages",
+        "downlevelIteration": true,
         "paths": {
             "~/*": ["./*/src"]
         }
