@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import exifConfig from '../exif-config'
+import {parseImageExif} from '~/shared'
 import Editable from './Editable'
 
 const Table = styled.table`
@@ -17,32 +17,7 @@ export default class Info extends React.PureComponent<InfoProps> {
 
   calcExif() {
     const {exif} = this.props
-
-    const flattenExif = Object.keys(exif).reduce((result, next) => {
-      if (typeof exif[next] !== 'object') return result
-      return {
-        ...result,
-        ...exif[next],
-      }
-    }, {})
-
-    const target = []
-    for (const [key, value] of exifConfig) {
-      if (flattenExif[key]) {
-        let exifValue = flattenExif[key]
-        if (value.transform) {
-          exifValue = value.transform(exifValue)
-        }
-        target.push({
-          key,
-          ...value,
-          value: exifValue,
-          displayValue: value.valueDescriptor ?
-            value.valueDescriptor(exifValue) : exifValue,
-        })
-      }
-    }
-    return target
+    return parseImageExif(exif)
   }
 
   handleChange = (id: number, value: any) => {
@@ -55,7 +30,7 @@ export default class Info extends React.PureComponent<InfoProps> {
     return (
       <Table>
         <tbody>
-          {exifInfo.map(item => (
+          {Array.from(exifInfo).map(([key, item]) => (
             <tr key={item.key}>
               <th>{item.label}</th>
               <td>

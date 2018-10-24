@@ -1,8 +1,8 @@
 type Transformer = (value: any) => any
 
-function set(obj: any, key: string, value: string, transformer?: Transformer): boolean {
+function set(obj: any, key: string | number, value: string, transformer?: Transformer): boolean {
   if (typeof obj === 'object') {
-    if (Object.keys(obj).includes(key)) {
+    if (Object.keys(obj).includes(key.toString())) {
       obj[key] = transformer ? transformer(value) : value
       return true
     }
@@ -11,7 +11,7 @@ function set(obj: any, key: string, value: string, transformer?: Transformer): b
   return false
 }
 
-export function deepSet<T>(obj: T, key: string, value: string, transformer?: Transformer): T {
+export function setDeep<T>(obj: T, key: string | number, value: string, transformer?: Transformer): T {
   set(obj, key, value, transformer)
   return obj
 }

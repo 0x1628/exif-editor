@@ -1,4 +1,4 @@
-interface ExifConfig {
+export interface ExifConfig {
   label: string
   writable?: boolean
   editType?: string

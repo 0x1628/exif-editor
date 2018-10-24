@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@fragment0/tslint-config": "^0.1.2",
+    "@types/lodash": "^4.14.117",
+    "lodash": "^4.17.11",
     "piexifjs": "1.0.4",
     "tslint": "^5.11.0",
     "typescript": "^3.1.3"

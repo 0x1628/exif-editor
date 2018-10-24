@@ -1,0 +1,6 @@
+{
+  "extends": "@fragment0/tslint-config",
+  "rules": {
+    "no-implicit-dependencies": false
+  }
+}
