@@ -12,14 +12,16 @@ const Wrapper = styled.div`
 
 interface ImageProps {
   src: string
+  alt: string
 }
 
 export default class Image extends React.Component<ImageProps> {
   render() {
-    const {src} = this.props
+    const {src, alt} = this.props
+
     return (
       <Wrapper>
-        <img src={src} />
+        <img src={src} alt={alt} title={alt} />
       </Wrapper>
     )
   }

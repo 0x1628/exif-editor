@@ -1,5 +1,5 @@
 declare module 'piexifjs' {
-  interface ExifObj {}
+  interface ExifObj {[k: string]: any}
 
   export function load(jpegData: string): ExifObj
   export function dump(exif: ExifObj): any

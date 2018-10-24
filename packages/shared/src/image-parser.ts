@@ -1,4 +1,5 @@
 import * as piexifjs from 'piexifjs'
+// tslint:disable-next-line
 import cloneDeep = require('lodash/cloneDeep')
 import exifConfig, { ExifConfig } from './exif-config'
 import {setDeep} from './utils'
@@ -11,12 +12,13 @@ export interface Exif extends ExifConfig {
 }
 
 export interface ImageInfo {
-  datauri: string
+  name: string,
+  datauri: string,
   origin: {
-    datauri: string
-    exif: any
+    datauri: string,
+    exif: any,
   }
-  exif: any
+  exif: any,
 }
 
 export async function getImageInfo(target: File): Promise<ImageInfo> {
@@ -28,7 +30,9 @@ export async function getImageInfo(target: File): Promise<ImageInfo> {
         if (e.target) {
           const result = (e.target as any).result
           const exif = piexifjs.load(result)
+          delete exif.thumbnail
           resolve({
+            name: target.name,
             datauri: result,
             exif,
             origin: {
@@ -54,9 +58,9 @@ export async function getImageInfo(target: File): Promise<ImageInfo> {
 }
 
 export function parseImageExif(exif: any): Map<number, Exif> {
-  const flatten = Object.keys(exif).reduce((target, next) => {
+  const flatten = Object.keys(exif).reduce((result, next) => {
     return {
-      ...target,
+      ...result,
       ...exif[next],
     }
   }, {})
@@ -73,7 +77,7 @@ export function parseImageExif(exif: any): Map<number, Exif> {
         ...config,
         value: exifValue,
         displayValue: config.valueDescriptor ?
-          config.valueDescriptor(exifValue) : exifValue
+          config.valueDescriptor(exifValue) : exifValue,
       })
     }
   }
@@ -83,14 +87,21 @@ export function parseImageExif(exif: any): Map<number, Exif> {
 
 export function updateExif(image: ImageInfo, target: Map<number, any>): ImageInfo {
   const exif = cloneDeep(image.exif)
+
+  const setTransformer = (key: number, ov: any) => {
+    const {detransform} = exifConfig.get(key)!
+    if (detransform) {
+      return detransform(ov)
+    }
+    return ov
+  }
+
   for (const [key, value] of target) {
-    setDeep(exif, key, value, (ov: any) => {
-      const {detransform} = exifConfig.get(key)!
-      if (detransform) {
-        return detransform(ov)
-      }
-      return ov
-    })
+    setDeep(exif, key, value, ov => setTransformer(key, ov))
+    const {dunplications} = exifConfig.get(key)!
+    if (dunplications) {
+      dunplications.forEach(k => setDeep(exif, k, value, ov => setTransformer(key, ov)))
+    }
   }
 
   const exifbytes = piexifjs.dump(exif)

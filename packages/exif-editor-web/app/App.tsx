@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {createGlobalStyle} from 'styled-components'
 import {getImageInfo, updateExif, ImageInfo} from '~/shared'
+import styled, {createGlobalStyle, ThemeProvider, ThemeInterface} from './styled'
 import Input from './components/Input'
 import Image from './components/Image'
 import Info from './components/Info'
@@ -12,9 +12,20 @@ body, div, p {
 }
 `
 
+const Wrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 18px;
+`
+
 interface AppState {
   targetImage?: ImageInfo
   changed: boolean
+}
+
+const theme: ThemeInterface = {
+  primaryColor: '#003bff',
+  primaryColorInverted: '#fff',
 }
 
 export default class App extends React.Component<{}, AppState> {
@@ -51,13 +62,15 @@ export default class App extends React.Component<{}, AppState> {
     const {targetImage, changed} = this.state
 
     return (
-      <div>
-        {targetImage && <Image src={targetImage.datauri} />}
-        <Input onSelect={this.handleFileSelect} />
-        {targetImage && <Info exif={targetImage.exif} onInfoChange={this.handleInfoChange} />}
-        {changed && <button onClick={this.handleSaveImage}>save</button>}
-        <GlobalStyle />
-      </div>
+      <ThemeProvider theme={theme}>
+        <Wrapper>
+          {targetImage && <Image src={targetImage.datauri} alt={targetImage.name} />}
+          <Input onSelect={this.handleFileSelect} />
+          {targetImage && <Info exif={targetImage.exif} onInfoChange={this.handleInfoChange} />}
+          {changed && <button onClick={this.handleSaveImage}>save</button>}
+          <GlobalStyle />
+        </Wrapper>
+      </ThemeProvider>
     )
   }
 }

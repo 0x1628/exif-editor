@@ -1,6 +1,7 @@
 export interface ExifConfig {
   label: string
   writable?: boolean
+  dunplications?: number[]
   editType?: string
   // descriptor value has been transformed
   valueDescriptor?(value: any): string
@@ -23,7 +24,7 @@ const exifConfig = new Map<number, ExifConfig>([
     {
       label: 'Exposure Time',
       valueDescriptor([a, b]) {
-        return `${a}/${b} sec`
+        return `${a}/${b} sec.`
       },
     },
   ],
@@ -32,7 +33,7 @@ const exifConfig = new Map<number, ExifConfig>([
     {
       label: 'Focal Length',
       valueDescriptor(value: number) {
-        return `${value.toFixed(1)}(35mm film)`
+        return `${value.toFixed(1)} (35mm film)`
       },
     },
   ],
@@ -89,12 +90,12 @@ const exifConfig = new Map<number, ExifConfig>([
     },
   ],
   [
-    // TODO or 36868?
     36867,
     {
       label: 'Date/Time',
       writable: true,
       editType: 'datetime-local',
+      dunplications: [36868],
       transform(value) {
         const re = /^(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}).+/
         const result = value.match(re)
