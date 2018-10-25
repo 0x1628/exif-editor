@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 6px;
+  margin: auto 0;
 
   &::before {
     content: 'Select image to begin';

@@ -10,15 +10,33 @@ body, div, p {
   margin: 0;
   padding: 0;
 }
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+body, div {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+}
 `
 
 const Wrapper = styled.div`
   max-width: 600px;
   margin: 0 auto;
   font-size: 18px;
+  flex: 1;
 `
 
-interface AppState {
+export interface AppState {
   targetImage?: ImageInfo
   changed: boolean
 }
@@ -65,7 +83,7 @@ export default class App extends React.Component<{}, AppState> {
       <ThemeProvider theme={theme}>
         <Wrapper>
           {targetImage && <Image src={targetImage.datauri} alt={targetImage.name} />}
-          <Input onSelect={this.handleFileSelect} />
+          {!targetImage && <Input onSelect={this.handleFileSelect} />}
           {targetImage && <Info exif={targetImage.exif} onInfoChange={this.handleInfoChange} />}
           {changed && <button onClick={this.handleSaveImage}>save</button>}
           <GlobalStyle />

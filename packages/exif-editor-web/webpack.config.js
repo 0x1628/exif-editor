@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 const IS_DEV = process.env.NODE_ENV !== 'production'
 
@@ -39,5 +40,9 @@ module.exports = {
       excludeChunks: ['sw'],
       template: 'index.html',
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
+  devServer: {
+    hotOnly: true,
+  },
 }

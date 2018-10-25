@@ -5,6 +5,33 @@ import Editable from './Editable'
 
 const Table = styled.table`
   width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  tr + tr {
+    border-top: 1px solid #cbd7ef;
+  }
+
+  tr:nth-child(2n) {
+    background: #eaefff;
+  }
+
+  td, th {
+    padding: 5px 0;
+    line-height: 1.3;
+  }
+
+  th {
+    font-size: 12px;
+    color: #666;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  td {
+    font-size: 14px;
+  }
 `
 
 interface InfoProps {
