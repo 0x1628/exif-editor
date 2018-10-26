@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   margin: auto 0;
 
   &::before {
-    content: 'Select image to begin';
+    content: attr(data-content);
   }
 
   input {
@@ -31,10 +31,16 @@ const Wrapper = styled.div`
 `
 
 interface InputProps {
+  content: string
+  className?: string
   onSelect(f: File): void
 }
 
 export default class Input extends React.Component<InputProps> {
+  static defaultProps = {
+    content: 'Select image to begin',
+  }
+
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {onSelect} = this.props
     const input = e.target
@@ -45,9 +51,9 @@ export default class Input extends React.Component<InputProps> {
   }
 
   render() {
-    const {onSelect} = this.props
+    const {onSelect, content, className} = this.props
     return (
-      <Wrapper>
+      <Wrapper data-content={content} className={className}>
         <input type="file" onChange={this.handleChange} />
       </Wrapper>
     )

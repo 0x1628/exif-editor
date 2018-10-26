@@ -31,12 +31,15 @@ export default class Editable extends React.Component<EditableProps, EditableSta
     e.preventDefault()
 
     this.props.onChange(this.props.id, this.input!.value)
+    this.setState({editing: false})
   }
 
-  handleToggleEditing = () => {
+  handleFocus = () => {
     if (this.props.disabled) return
     if (this.state.editing) return
-    this.setState({editing: !this.state.editing})
+    this.setState({editing: true}, () => {
+      this.input!.focus()
+    })
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class Editable extends React.Component<EditableProps, EditableSta
     const {editing} = this.state
 
     return (
-      <Wrapper onClick={this.handleToggleEditing}>
+      <Wrapper onClick={this.handleFocus}>
         {editing ?
         <form onSubmit={this.handleSubmit}>
           <input

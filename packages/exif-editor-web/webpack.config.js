@@ -15,6 +15,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    globalObject: 'this',
   },
   module: {
     rules: [
@@ -44,5 +45,6 @@ module.exports = {
   ],
   devServer: {
     hotOnly: true,
+    host: '0.0.0.0',
   },
 }

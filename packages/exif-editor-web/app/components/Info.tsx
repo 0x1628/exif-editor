@@ -7,10 +7,9 @@ const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  table-layout: fixed;
 
   tr + tr {
-    border-top: 1px solid #cbd7ef;
+    border-top: 1px solid #ddd;
   }
 
   tr:nth-child(2n) {
@@ -32,6 +31,20 @@ const Table = styled.table`
 
   td {
     font-size: 14px;
+    line-height: 20px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+    &:focus {
+      outline: none;
+
+      box-shadow: 0 0 4px rgba(0, 59, 255, .4);
+    }
   }
 `
 

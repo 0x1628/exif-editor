@@ -26,11 +26,19 @@ function subEqual(a: any, b: any): boolean {
 }
 
 function getComponentFingerprint(c: React.Component): string {
-  return (c as any)._reactInternalFiber.index.toString()
+  const fiberNode = (c as any)._reactInternalFiber
+
+  const result = [fiberNode.index]
+  let child = fiberNode.child
+  while (child) {
+    result.push(child.index)
+    child = child.child
+  }
+  return result.join('.')
 }
 
 function findStateFulComponent(root: React.Component): React.Component[] {
-  return findAllInRenderedTree(root, 
+  return findAllInRenderedTree(root,
     i => i && i instanceof React.Component && Boolean(i.state)) as React.Component[]
 }
 
@@ -38,16 +46,27 @@ function saveStatefulComponent(targetMap: Map<any, any>, root: React.Component) 
   targetMap.clear()
   const result = findStateFulComponent(root)
 
-  result.forEach(c => {
+  result.forEach((c, index) => {
     // TODO instance fingerprint
     // temp use index
-    targetMap.set(getComponentFingerprint(c), c.state)
+    // targetMap.set(getComponentFingerprint(c, index), c.state)
+    targetMap.set(index, c.state)
   })
+  console.log(targetMap)
+}
+
+function updateComponentWithCache(root: React.Component, data: Map<any, any>, plus = 0) {
+  const targets = findStateFulComponent(root)
+  if (targets[plus]) {
+    targets[plus].setState(data.get(plus), () => {
+      updateComponentWithCache(root, data, plus + 1)
+    })
+  }
+
 }
 
 export function cache() {
-  let cached: any = null
-  const cachedMap: Map<string, any> = new Map()
+  const cachedMap: Map<number, any> = new Map()
 
   class CachedWrapper extends React.Component {
     node: React.Component | null = null
@@ -59,10 +78,9 @@ export function cache() {
       const el = findDOMNode(this.node!)
 
       const observer = this.observer = new MutationObserver(this.changeCallback)
-      observer.observe(el!.parentNode!, {attributes: true, childList: true, 
+      observer.observe(el!.parentNode!, {attributes: true, childList: true,
         subtree: true, characterData: true})
 
-      cachedMap.set(getComponentFingerprint(this.node!), cached)
       saveStatefulComponent(cachedMap, this.node!)
     }
 
@@ -71,10 +89,13 @@ export function cache() {
       // temp lock for prevent changeCallback
       this.lock = true
 
+      updateComponentWithCache(this.node!, cachedMap)
       const updated = findStateFulComponent(this.node!)
-      updated.forEach(c => {
+      console.log(updated)
+      updated.forEach((c, index) => {
         const fingerprint = getComponentFingerprint(c)
-        const state = cachedMap.get(fingerprint)
+        // const state = cachedMap.get(fingerprint)
+        const state = cachedMap.get(index)
         if (state) {
           // TODO make async
           c.setState(state)

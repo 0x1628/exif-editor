@@ -19,3 +19,13 @@ if ((module as any).hot) {
     render(cached(<NewApp />), document.getElementById('root'))
   })
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then(() => {
+      console.log(123)
+    }, () => {
+      console.log('error')
+    })
+  })
+}

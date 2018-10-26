@@ -81,12 +81,14 @@ const exifConfig = new Map<number, ExifConfig>([
     271,
     {
       label: 'Factory',
+      writable: true,
     },
   ],
   [
     272,
     {
       label: 'Camera Model',
+      writable: true,
     },
   ],
   [
@@ -119,6 +121,7 @@ const exifConfig = new Map<number, ExifConfig>([
     270,
     {
       label: 'Description',
+      writable: true,
     },
   ],
   [
@@ -145,12 +148,14 @@ const exifConfig = new Map<number, ExifConfig>([
             return ''
         }
       },
+      writable: true,
     },
   ],
   [
     305,
     {
       label: 'Software',
+      writable: true,
     },
   ],
   [

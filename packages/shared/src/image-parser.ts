@@ -113,3 +113,11 @@ export function updateExif(image: ImageInfo, target: Map<number, any>): ImageInf
     exif,
   }
 }
+
+export function clearExif(image: ImageInfo): ImageInfo {
+  return {
+    ...image,
+    exif: {},
+    datauri: piexifjs.remove(image.datauri),
+  }
+}
