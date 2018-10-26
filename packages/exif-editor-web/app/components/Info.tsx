@@ -7,6 +7,7 @@ const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
+  table-layout: fixed;
 
   tr + tr {
     border-top: 1px solid #cbd7ef;

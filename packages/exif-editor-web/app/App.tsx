@@ -4,6 +4,7 @@ import styled, {createGlobalStyle, ThemeProvider, ThemeInterface} from './styled
 import Input from './components/Input'
 import Image from './components/Image'
 import Info from './components/Info'
+// import Test from './components/Test'
 
 const GlobalStyle = createGlobalStyle`
 body, div, p {
@@ -17,6 +18,7 @@ html {
 
 body {
   min-height: 100%;
+  font-family: sans-serif;
 }
 
 body, div {
