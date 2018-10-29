@@ -22,7 +22,7 @@ if ((module as any).hot) {
 
 if ('serviceWorker' in navigator && location.search.indexOf('source=pwa') !== -1) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').then(() => {
+    navigator.serviceWorker.register('./sw.js', {scope: './'}).then(() => {
       //
     }, () => {
       // console.log('error')

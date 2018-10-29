@@ -1,11 +1,11 @@
 const CACHE_NAME = `exif-editor-cache-v${BUILD_VERSION}`
 
 const urlsToCache = [
-  '/',
-  '/assets/manifest.json',
-  '/assets/192.png',
-  '/assets/512.png',
-  '/app.js',
+  `${PATH}`,
+  `${PATH}assets/manifest.json`,
+  `${PATH}assets/192.png`,
+  `${PATH}assets/512.png`,
+  `${PATH}app.js`,
 ]
 
 function clearCache() {

@@ -48,6 +48,7 @@ module.exports = {
     isDev ? new webpack.HotModuleReplacementPlugin() : null,
     new webpack.DefinePlugin({
       BUILD_VERSION: isDev ? 1 : buildVersion,
+      PATH: isDev ? '"/"' : '"/exif-editor/"',
     }),
   ].filter(Boolean),
   devServer: {
