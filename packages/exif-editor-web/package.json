@@ -4,7 +4,8 @@
   "description": "An EDIF PWA Editor",
   "author": "fragment0",
   "scripts": {
-    "dev": "../../node_modules/.bin/webpack-dev-server"
+    "dev": "../../node_modules/.bin/webpack-dev-server",
+    "build": "../../node_modules/.bin/webpack-cli && cp -r ./assets dist"
   },
   "license": "MIT",
   "devDependencies": {

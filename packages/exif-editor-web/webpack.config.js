@@ -2,10 +2,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const IS_DEV = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV !== 'production'
+
+const d = new Date()
+const buildVersion = `${d.getFullYear()}${d.getMonth().toString().padStart(2, '0')}\
+${d.getDate().toString().padStart(2, '0')}`
 
 module.exports = {
-  mode: IS_DEV ? 'development' : 'production',
+  mode: isDev ? 'development' : 'production',
   entry: {
     app: [
       './app/index.tsx',
@@ -41,8 +45,11 @@ module.exports = {
       excludeChunks: ['sw'],
       template: 'index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    isDev ? new webpack.HotModuleReplacementPlugin() : null,
+    new webpack.DefinePlugin({
+      BUILD_VERSION: isDev ? 1 : buildVersion,
+    }),
+  ].filter(Boolean),
   devServer: {
     hotOnly: true,
     host: '0.0.0.0',

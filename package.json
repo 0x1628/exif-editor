@@ -7,8 +7,10 @@
   ],
   "scripts": {
     "watch-shared": "cd packages/shared && npm run dev",
+    "build-shared": "cd packages/shared && npm run build",
     "watch-web": "cd packages/exif-editor-web && npm run dev",
-    "web": "concurrently 'npm:watch-shared' 'npm:watch-web'"
+    "web": "concurrently 'npm:watch-shared' 'npm:watch-web'",
+    "build-web": "npm run build-shared && cd packages/exif-editor-web && npm run build"
   },
   "devDependencies": {
     "@fragment0/tslint-config": "^0.1.2",

@@ -52,7 +52,6 @@ function saveStatefulComponent(targetMap: Map<any, any>, root: React.Component) 
     // targetMap.set(getComponentFingerprint(c, index), c.state)
     targetMap.set(index, c.state)
   })
-  console.log(targetMap)
 }
 
 function updateComponentWithCache(root: React.Component, data: Map<any, any>, plus = 0) {
@@ -91,7 +90,7 @@ export function cache() {
 
       updateComponentWithCache(this.node!, cachedMap)
       const updated = findStateFulComponent(this.node!)
-      console.log(updated)
+
       updated.forEach((c, index) => {
         const fingerprint = getComponentFingerprint(c)
         // const state = cachedMap.get(fingerprint)

@@ -20,12 +20,12 @@ if ((module as any).hot) {
   })
 }
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && location.search.indexOf('source=pwa') !== -1) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').then(() => {
-      console.log(123)
+      //
     }, () => {
-      console.log('error')
+      // console.log('error')
     })
   })
 }
