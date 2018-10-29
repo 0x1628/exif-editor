@@ -4,9 +4,7 @@ const webpack = require('webpack')
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const d = new Date()
-const buildVersion = `${d.getFullYear()}${d.getMonth().toString().padStart(2, '0')}\
-${d.getDate().toString().padStart(2, '0')}`
+const buildVersion = `${Date.now()}`
 
 module.exports = {
   mode: isDev ? 'development' : 'production',

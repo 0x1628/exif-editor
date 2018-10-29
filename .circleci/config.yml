@@ -16,7 +16,7 @@ jobs:
 
       - run: yarn install
 
-      - run: NODE_ENV=productin npm run build-web
+      - run: NODE_ENV=production npm run build-web
 
       - run:
           name: Deploy
