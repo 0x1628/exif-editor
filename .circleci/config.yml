@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.12
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - run: NODE_ENV=productin npm run build-web
+
+      - run:
+          name: Deploy
+          command: scp -o "StrictHostKeyChecking no" -r ./packages/exif-editor-web/dist/* ci@xxxiin.com:/home/web/exif-editor-web/
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
