@@ -54,7 +54,7 @@ export default class Input extends React.Component<InputProps> {
     const {onSelect, content, className} = this.props
     return (
       <Wrapper data-content={content} className={className}>
-        <input type="file" onChange={this.handleChange} />
+        <input type="file" onChange={this.handleChange} aria-label="upload image" />
       </Wrapper>
     )
   }

@@ -11,6 +11,7 @@ interface EditableProps {
   value: string
   displayValue?: string
   type: string
+  label: string
   onChange(id: number, value: string): void
 }
 
@@ -43,7 +44,7 @@ export default class Editable extends React.Component<EditableProps, EditableSta
   }
 
   render() {
-    const {type, value, displayValue} = this.props
+    const {type, value, label, displayValue} = this.props
     const {editing} = this.state
 
     return (
@@ -55,6 +56,7 @@ export default class Editable extends React.Component<EditableProps, EditableSta
             type={type}
             onBlur={this.handleSubmit}
             ref={el => this.input = el}
+            aria-label={label}
           />
         </form>
         : (displayValue || value)

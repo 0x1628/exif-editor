@@ -1,5 +1,6 @@
 {
   "name": "Exif Editor",
+  "short_name": "Exif Editor",
   "icons": [
     {
       "src": "./192.png",

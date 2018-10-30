@@ -37,7 +37,7 @@ module.exports = {
       '~': path.resolve(__dirname, '..'),
     },
   },
-  devtool: 'inline-source-map',
+  devtool: isDev ? 'inline-source-map' : false,
   plugins: [
     new HtmlWebpackPlugin({
       excludeChunks: ['sw'],

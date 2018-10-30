@@ -82,6 +82,7 @@ export default class Info extends React.PureComponent<InfoProps> {
                   disabled={!item.writable}
                   onChange={this.handleChange}
                   type={item.editType}
+                  label={item.label}
                 />
               </td>
             </tr>
