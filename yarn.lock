@@ -3356,6 +3356,11 @@ react-is@^16.3.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
   integrity sha512-hSl7E6l25GTjNEZATqZIuWOgSnpXb3kD0DVCujmg46K5zLxsbiKaaT6VO9slkSBDPZfYs30lwfJwbOFOnoEnKQ==
 
+react-state-persist@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/react-state-persist/-/react-state-persist-0.1.0.tgz#8a22db39b86fa71ff0a0a81e6b44f23ef8d089cd"
+  integrity sha512-XpoB6pnb16gDwI3ctNkl83cjEnUGWGVE/Ry+O1KfbwSXRzMTGfjFQVfv2LKTRxTCMsYbOmo6DvorVFhveQsPkQ==
+
 react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.npmjs.org/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"

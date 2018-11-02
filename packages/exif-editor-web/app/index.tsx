@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {render} from 'react-dom'
 import App, {AppState} from './App'
-import {cache} from './simple-persistent-cache'
+import {persist} from 'react-state-persist'
 
 let persistCache: AppState | null = null
 function updatePersist(data: AppState) {
   persistCache = {...data}
 }
 
-const cached = cache()
+const cached = persist()
 
 render(cached(<App />), document.getElementById('root'))
 

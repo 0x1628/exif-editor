@@ -35,6 +35,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '~': path.resolve(__dirname, '..'),
+      react: path.resolve(__dirname, '..', '..', 'node_modules', 'react'),
+      'react-dom': path.resolve(__dirname, '..', '..', 'node_modules', 'react-dom'),
     },
   },
   devtool: isDev ? 'inline-source-map' : false,
