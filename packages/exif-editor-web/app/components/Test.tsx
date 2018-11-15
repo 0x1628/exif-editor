@@ -1,15 +1,17 @@
 import * as React from 'react'
 
-export default class Test extends React.Component {
-  state = {changed: false}
+type TestState = {changed: boolean}
 
-  componentDidMount() {
+export default class Test extends React.Component<{}, TestState> {
+  state: TestState = {changed: false}
+
+  componentDidMount(): void {
     setTimeout(() => {
       this.setState({changed: true})
     }, 2000)
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div style={{color: '#00f'}}>{this.state.changed ? 'Hello ccc' : 'Hello world'}</div>
     )

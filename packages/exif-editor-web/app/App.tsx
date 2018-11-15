@@ -71,6 +71,8 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({
         targetImage: image,
       })
+    }).catch((e: any) => {
+      throw e
     })
   }
 

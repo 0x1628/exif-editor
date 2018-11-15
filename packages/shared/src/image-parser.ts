@@ -23,6 +23,7 @@ export interface ImageInfo {
 
 export async function getImageInfo(target: File): Promise<ImageInfo> {
   return new Promise<ImageInfo>((resolve, reject) => {
+    // tslint:disable-next-line
     if (typeof document !== 'undefined') { // browser
       const reader = new FileReader()
 

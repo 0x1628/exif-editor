@@ -20,12 +20,12 @@ interface EditableStates {
 }
 
 export default class Editable extends React.Component<EditableProps, EditableStates> {
-  static defaultProps = {
+  static defaultProps: Partial<EditableProps> = {
     type: 'text',
     disabled: false,
   }
 
-  state = {editing: false}
+  state: EditableStates = {editing: false}
   input: HTMLInputElement | null = null
 
   handleSubmit = (e: React.FormEvent) => {
@@ -43,7 +43,7 @@ export default class Editable extends React.Component<EditableProps, EditableSta
     })
   }
 
-  render() {
+  render(): JSX.Element {
     const {type, value, label, displayValue} = this.props
     const {editing} = this.state
 

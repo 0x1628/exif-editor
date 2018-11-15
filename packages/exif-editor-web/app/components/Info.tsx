@@ -54,9 +54,7 @@ interface InfoProps {
 }
 
 export default class Info extends React.PureComponent<InfoProps> {
-  state = {}
-
-  calcExif() {
+  calcExif(): any {
     const {exif} = this.props
     return parseImageExif(exif)
   }
@@ -65,7 +63,7 @@ export default class Info extends React.PureComponent<InfoProps> {
     this.props.onInfoChange(id, value)
   }
 
-  render() {
+  render(): JSX.Element {
     const exifInfo = this.calcExif()
 
     return (

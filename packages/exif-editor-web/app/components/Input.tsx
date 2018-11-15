@@ -37,7 +37,7 @@ interface InputProps {
 }
 
 export default class Input extends React.Component<InputProps> {
-  static defaultProps = {
+  static defaultProps: Partial<InputProps> = {
     content: 'Select image to begin',
   }
 
@@ -50,7 +50,7 @@ export default class Input extends React.Component<InputProps> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const {onSelect, content, className} = this.props
     return (
       <Wrapper data-content={content} className={className}>

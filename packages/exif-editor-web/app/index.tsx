@@ -3,11 +3,6 @@ import {render} from 'react-dom'
 import App, {AppState} from './App'
 import {persist} from 'react-state-persist'
 
-let persistCache: AppState | null = null
-function updatePersist(data: AppState) {
-  persistCache = {...data}
-}
-
 const cached = persist()
 
 render(cached(<App />), document.getElementById('root'))

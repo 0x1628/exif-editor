@@ -8,7 +8,7 @@ const urlsToCache = [
   `${PATH}app.js`,
 ]
 
-function clearCache() {
+function clearCache(): Promise<any> {
   return caches.keys().then(names => {
     return Promise.all(names.filter(i => i !== CACHE_NAME)
       .map(i => caches.delete(i)))
@@ -21,6 +21,8 @@ self.addEventListener('install', (event: any) => {
       caches.open(CACHE_NAME)
         .then((cache) => {
           return cache.addAll(urlsToCache)
+        }).catch(e => {
+          throw e
         })
     }),
   )

@@ -14,7 +14,7 @@ const exifConfig = new Map<number, ExifConfig>([
     33437,
     {
       label: 'Aperture Value',
-      valueDescriptor([a, b]) {
+      valueDescriptor([a, b]: any): string {
         return `f/${a / b}`
       },
     },
@@ -23,7 +23,7 @@ const exifConfig = new Map<number, ExifConfig>([
     33434,
     {
       label: 'Exposure Time',
-      valueDescriptor([a, b]) {
+      valueDescriptor([a, b]: any): string {
         return `${a}/${b} sec.`
       },
     },
@@ -32,7 +32,7 @@ const exifConfig = new Map<number, ExifConfig>([
     41989,
     {
       label: 'Focal Length',
-      valueDescriptor(value: number) {
+      valueDescriptor(value: number): string {
         return `${value.toFixed(1)} (35mm film)`
       },
     },
@@ -41,7 +41,7 @@ const exifConfig = new Map<number, ExifConfig>([
     37385,
     {
       label: 'Flash',
-      valueDescriptor(value: number) {
+      valueDescriptor(value: number): string {
         const bit = value.toString(2)
         const b0 = bit.slice(-1)
         const b12 = bit.slice(-3, -1)
@@ -98,7 +98,7 @@ const exifConfig = new Map<number, ExifConfig>([
       writable: true,
       editType: 'datetime-local',
       dunplications: [36868],
-      transform(value) {
+      transform(value: string): string {
         const re = /^(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}).+/
         const result = value.match(re)
         if (result) {
@@ -106,7 +106,7 @@ const exifConfig = new Map<number, ExifConfig>([
         }
         return value
       },
-      detransform(value) {
+      detransform(value: string): string {
         const re = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/
         const result = value.match(re)
         if (result) {
@@ -134,7 +134,7 @@ const exifConfig = new Map<number, ExifConfig>([
     274,
     {
       label: 'Orientation',
-      valueDescriptor(value) {
+      valueDescriptor(value: number): string {
         switch (value) {
           case 1:
             return 'top'

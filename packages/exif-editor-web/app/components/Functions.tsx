@@ -50,11 +50,11 @@ interface FunctionsProps {
 }
 
 export default class Functions extends React.Component<FunctionsProps> {
-  static defaultProps = {
+  static defaultProps: Partial<FunctionsProps> = {
     changed: false,
   }
 
-  render() {
+  render(): JSX.Element {
     const {changed, onSelect, onClear, onSave} = this.props
 
     return (

@@ -1,6 +1,6 @@
 import styled, {css} from './index'
 
-export function simpleCenterVertical(height: number) {
+export function simpleCenterVertical(height: number): string {
   return `
     height: ${height}px;
     line-height: ${height}px;

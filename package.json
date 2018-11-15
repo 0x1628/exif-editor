@@ -13,7 +13,7 @@
     "build-web": "npm run build-shared && cd packages/exif-editor-web && npm run build"
   },
   "devDependencies": {
-    "@fragment0/tslint-config": "^0.1.2",
+    "@fragment0/tslint-config": "^0.1.6",
     "concurrently": "^4.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.1.3"

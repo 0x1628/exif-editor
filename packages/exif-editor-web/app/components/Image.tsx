@@ -16,7 +16,7 @@ interface ImageProps {
 }
 
 export default class Image extends React.Component<ImageProps> {
-  render() {
+  render(): JSX.Element {
     const {src, alt} = this.props
 
     return (
